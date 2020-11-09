@@ -23,7 +23,15 @@ public class Frog implements IFrog {
 
 	}
 
+	@Override
+	public Direction getDirection() {
+		return this.dir;
+	}
 
+	@Override
+	public void move(Direction key) {
+
+	}
 
 
 }
