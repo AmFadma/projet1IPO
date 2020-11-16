@@ -76,11 +76,15 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		//if(frog.getPosition() ==)
+		if( !(environment.isWinningPosition(frog.getPosition()))){
+			if (!(environment.isSafe(frog.getPosition()))) {
+				getGraphic().endGameScreen("game over");
+			}
+			return false;
 
-		// TODO
+		}
 
-		return false;
+		return true;
 	}
 
 	/**
@@ -91,6 +95,11 @@ public class Game {
 	 */
 	public boolean testWin() {
 // TODO
+		if (environment.isWinningPosition(frog.getPosition())){
+			getGraphic().endGameScreen("you won");
+			return true;
+
+		}
 		return false;
 	}
 
