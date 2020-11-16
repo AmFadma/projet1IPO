@@ -76,6 +76,7 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
+		//if(frog.getPosition() ==)
 
 		// TODO
 
@@ -89,7 +90,7 @@ public class Game {
 	 * @return true si la partie est gagn�e
 	 */
 	public boolean testWin() {
-
+// TODO
 		return false;
 	}
 

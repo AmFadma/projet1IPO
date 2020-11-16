@@ -29,6 +29,28 @@ public class Frog implements IFrog {
 
 	@Override
 	public void move(Direction key) {
+		if(key == Direction.up){
+			if( getPosition().ord != 19) {
+				this.pos = new Case(getPosition().absc, getPosition().ord + 1);
+			}
+
+		}
+		if(key == Direction.down){
+			if( getPosition().ord != 0) {
+				this.pos = new Case(getPosition().absc, getPosition().ord + -1);
+			}
+
+		}
+		if(key == Direction.right){
+			if(getPosition().absc != 25 ) {
+				this.pos = new Case(getPosition().absc + 1, getPosition().ord);
+			}
+		}
+		if(key == Direction.left){
+			if(getPosition().absc != 0 ) {
+				this.pos = new Case(getPosition().absc - 1, getPosition().ord);
+			}
+		}
 
 	}
 
