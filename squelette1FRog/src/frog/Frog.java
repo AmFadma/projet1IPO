@@ -8,7 +8,6 @@ import util.Direction;
 public class Frog implements IFrog {
 	
 	private Game game;
-
 	private Direction dir;
 	private Case pos;
 
