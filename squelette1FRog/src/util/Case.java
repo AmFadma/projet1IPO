@@ -10,4 +10,5 @@ public class Case {
 		this.ord = ord;
 	}
 
+
 }
