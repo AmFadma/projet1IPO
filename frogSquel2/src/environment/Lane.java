@@ -25,7 +25,7 @@ public class Lane {
 			this.density = density;
 			//this.timer = speed;
 
-			for (int i = 0; i <  4*game.width; ++i) { //**************************************************************************************************
+			for (int i = 0; i <  3*game.width; ++i) { //**************************************************************************************************
 				this.moveCars(true);
 				this.mayAddCar();
 			}
