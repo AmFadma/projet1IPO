@@ -2,6 +2,7 @@ package environment;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 import environment.Car;
 //import gameCommons.Case;
@@ -24,7 +25,7 @@ public class Environment implements IEnvironment {
         for (int i = 1; i< game.height-1; i++){
             this.way.add(new Lane(game,i,0.2));
         }
-        this.way.add(new Lane(game, game.height - 1, 0.0D));
+        this.way.add(new Lane(game, game.height - 1, 0.0));
 
 
 
@@ -45,10 +46,10 @@ public class Environment implements IEnvironment {
     @Override
     public boolean isWinningPosition(Case c) {
         Lane lastLine = new Lane(game,game.height-1,0.0);
-        if ((this.way.get(c.ord))== lastLine) {
-            return true;
-        }
-        return false;
+        return (Objects.equals(this.way.get(c.ord), lastLine));
+
+
+
     }
 
     @Override
@@ -65,6 +66,9 @@ public class Environment implements IEnvironment {
            way.get(i).update();
 
        }
+
+
+
     }
 
 

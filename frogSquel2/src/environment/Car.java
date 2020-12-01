@@ -20,13 +20,11 @@ public class Car {
 
 		this.game = game;
 		this.leftToRight =leftToRight;
-		//this.leftPosition =if (leftToRight){new Case ((0,firstCase.ord) }if(! leftToRight){new Case ((game.width,firstCase.ord)} ;
-		//this.leftPosition =  position (leftToRight,firstCase);
 		this.length = game.randomGen.nextInt(2)+1;//à changer
         if (this.leftToRight) {
-            this.leftPosition = new Case(0, firstCase.ord);
+            this.leftPosition = new Case(firstCase.absc - this.length, firstCase.ord);
         } else {
-            this.leftPosition = new Case(game.width,this.leftPosition.ord );
+            this.leftPosition = new Case(firstCase.absc, firstCase.ord );
         }
 
 	}
@@ -60,10 +58,8 @@ public class Car {
 	}
 
 	public boolean appearsInBounds (){
-		if (this.leftPosition.absc < game.width || this.leftPosition.absc + this.length > 0){
-			return true;
-		}
-		return false;
+	    return (this.leftPosition.absc < game.width || this.leftPosition.absc + this.length > 0);
+
 	}
 
 
@@ -81,6 +77,14 @@ public class Car {
 			}
 			game.getGraphic()
 					.add(new Element(leftPosition.absc + i, leftPosition.ord, color));
+		}
+	}
+
+	public boolean coversCase(Case c) {//*****************************************************************************
+		if (this.leftPosition.ord != c.ord) {
+			return false;
+		} else {
+			return c.absc >= this.leftPosition.absc && c.absc < this.leftPosition.absc + this.length;
 		}
 	}
 

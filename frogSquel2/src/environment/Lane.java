@@ -17,16 +17,15 @@ public class Lane {
 
 
 	public Lane(Game game, int ord, double density) {
-		{
 			this.game = game;
 			this.ord = ord;
-			this.speed = game.randomGen.nextInt(game.minSpeedInTimerLoops + 1);//a modifier pour ajouter tictac
+			this.speed = game.randomGen.nextInt(game.minSpeedInTimerLoops + 3);//a modifier pour ajouter tictac
 			this.cars = new ArrayList<>(); //ajouter pouvooir add voitures au fur et a mesure
 			this.leftToRight = game.randomGen.nextBoolean();
 			this.density = density;
-			this.timer = speed;
+			//this.timer = speed;
 
-			for (int i = 0; i < 4 * game.width; ++i) { //**************************************************************************************************
+			for (int i = 0; i <  4*game.width; ++i) { //**************************************************************************************************
 				this.moveCars(true);
 				this.mayAddCar();
 			}
@@ -47,19 +46,17 @@ public class Lane {
 
 		// A chaque tic d'horloge, une voiture peut être ajoutée
 
-	}
-
-	public Lane(Game game, int ord) {  //*****************************************************************************************
-		this(game, ord, game.defaultDensity);
-	}
 
 
-	 public void update() {  //***********************************************************************************************
+
+
+
+	 /**public void update() {  //***********************************************************************************************
 	  this.timer++;
 	  for(Car car : cars) {
 	   if (this.timer <= this.speed) {
 	    this.moveCars(false);
-	    this.mayAddCar();
+
 	   }
 	   else {
 	    this.moveCars(true);
@@ -67,30 +64,33 @@ public class Lane {
 	    this.timer = 0;
 	   }
 	  }
-	}
-
-
-	/**public void update() {  //***********************************************************************************************
-
-		if (this.timer <= this.speed) {
-			this.timer = 0;
-
-			this.moveCars(true);
-			this.mayAddCar();
-
-
-		} else {
-			this.moveCars(false);
-		}
-		++this.timer;
 	}**/
+
+
+	public void update() {  //***********************************************************************************************
+
+		  if (this.timer > this.speed) {
+			  this.timer = 0;
+			  this.moveCars(true);
+			  this.mayAddCar();
+
+		   } else {
+			  this.moveCars(false);
+		   }
+
+		this.timer++;
+
+
+	}
 
 
 	private void moveCars(boolean b) {
 		for (Car car : this.cars) {
 			car.move(b);
+
 		}
 		this.removeOldCars();
+
 
 	}
 
@@ -102,7 +102,7 @@ public class Lane {
 	public boolean isSafe(Case c){
 
 		for (Car car : this.cars) {
-			if (car.getPosition() == c) {
+			if (car.coversCase(c)) {//************************************************
 				return false;
 			}
 		}
@@ -144,31 +144,32 @@ public class Lane {
 
 	private void removeOldCars(){
 
-		for (Car car : this.cars) {
-			if (!car.appearsInBounds()){
-				this.cars.remove(car);
-			}
-		}
+		this.cars.removeIf(car -> !car.appearsInBounds());
 
 
 
 	}
-
-
-
-
-
-	/**public boolean getCar (Case c) {
-		Car car = cars.get(c.ord);
-		if (cars.get(c.absc)))
-
-		if (.equals(c);
-
-
-	}**/
-
-
+	public String toString() {
+		return "Lane [ord=" + this.ord + ", cars=" + this.cars + "]";
+	}
 }
+
+
+
+
+
+
+/**public boolean getCar (Case c) {
+    Car car = cars.get(c.ord);
+    if (cars.get(c.absc)))
+
+    if (.equals(c);
+
+
+}**/
+
+
+
 
 
 
