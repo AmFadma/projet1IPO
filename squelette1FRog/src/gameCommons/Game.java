@@ -1,10 +1,14 @@
 package gameCommons;
 
+import java.util.Timer;
 import java.awt.Color;
 import java.util.Random;
-
+import environment.EnvInf;
+import environment.FrogInf;
+import environment.Lane;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
+import util.Direction;
 
 public class Game {
 
@@ -15,6 +19,9 @@ public class Game {
 	public final int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
+	public int score = 0;
+	public int maxScore = 0;
+	public Timer timer = new Timer();
 
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
@@ -22,17 +29,11 @@ public class Game {
 	private IFroggerGraphics graphic;
 
 	/**
-	 * 
-	 * @param graphic
-	 *            l'interface graphique
-	 * @param width
-	 *            largeur en cases
-	 * @param height
-	 *            hauteur en cases
-	 * @param minSpeedInTimerLoop
-	 *            Vitesse minimale, en nombre de tour de timer avant d�placement
-	 * @param defaultDensity
-	 *            densite de voiture utilisee par defaut pour les routes
+	 * @param graphic             l'interface graphique
+	 * @param width               largeur en cases
+	 * @param height              hauteur en cases
+	 * @param minSpeedInTimerLoop Vitesse minimale, en nombre de tour de timer avant d�placement
+	 * @param defaultDensity      densite de voiture utilisee par defaut pour les routes
 	 */
 	public Game(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
 		super();
@@ -41,20 +42,22 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+
+
 	}
 
 	/**
 	 * Lie l'objet frog � la partie
-	 * 
+	 *
 	 * @param frog
 	 */
-	public void setFrog(IFrog frog) {
+	public void setFrogInf(IFrog frog) {
 		this.frog = frog;
 	}
 
 	/**
 	 * Lie l'objet environment a la partie
-	 * 
+	 *
 	 * @param environment
 	 */
 	public void setEnvironment(IEnvironment environment) {
@@ -62,7 +65,6 @@ public class Game {
 	}
 
 	/**
-	 * 
 	 * @return l'interface graphique
 	 */
 	public IFroggerGraphics getGraphic() {
@@ -72,41 +74,50 @@ public class Game {
 	/**
 	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
 	 * est le cas
-	 * 
+	 *
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		if( !(environment.isWinningPosition(frog.getPosition()))){
-			if (!(environment.isSafe(frog.getPosition()))) {
-				getGraphic().endGameScreen("game over");
+		if (!(this.environment.isWinningPosition(this.frog.getPosition()))) {
+			if (!(this.environment.isSafe(this.frog.getPosition()))) {
+
+
+				this.graphic.endGameScreen(" score of "+ this.maxScore +" in "+this.timer + " seconds");
+
 			}
-			return false;
+			return true;
 
 		}
 
-		return true;
+		return false;
 	}
+
 
 	/**
 	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
 	 * est le cas
-	 * 
+	 *
 	 * @return true si la partie est gagn�e
 	 */
 	public boolean testWin() {
 // TODO
-		if (environment.isWinningPosition(frog.getPosition())){
-			getGraphic().endGameScreen("you won");
+		if (this.environment.isWinningPosition(this.frog.getPosition())) {
+			this.graphic.endGameScreen("you win");
 			return true;
 
 		}
 		return false;
 	}
 
+	public void afficheWay(){
+		
+	}
+
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
 	 * partie.
 	 */
+
 	public void update() {
 		graphic.clear();
 		environment.update();
@@ -115,4 +126,17 @@ public class Game {
 		testWin();
 	}
 
+	public void addLane() {
+		this.environment.addLane();
+	}
+
+	public Timer setTimer () {
+		return this.timer ;
+	}
+
+
+
 }
+
+
+

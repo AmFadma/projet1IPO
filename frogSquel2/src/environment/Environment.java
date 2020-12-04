@@ -22,10 +22,10 @@ public class Environment implements IEnvironment {
         this.way= new ArrayList<>();
         this.way.add(new Lane(game,0,0.0));
 
-        for (int i = 1; i< game.height-1; i++){
+        for (int i = 1; i< game.height; i++){
             this.way.add(new Lane(game,i,0.2));
         }
-        this.way.add(new Lane(game, game.height - 1, 0.0));
+       // this.way.add(new Lane(game, game.height - 1, 0.0));
 
 
 
@@ -36,12 +36,10 @@ public class Environment implements IEnvironment {
     }
 
 
+    @Override
+    public void addLane() {
 
-
-
-
-
-
+    }
 
     @Override
     public boolean isWinningPosition(Case c) {
@@ -64,6 +62,9 @@ public class Environment implements IEnvironment {
         }**/
        for(int i = 0; i < way.size(); i++) {
            way.get(i).update();
+
+
+
 
        }
 

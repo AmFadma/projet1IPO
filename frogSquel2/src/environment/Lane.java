@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import util.Case;
 
 import gameCommons.Game;
+import util.Direction;
 
 public class Lane {
 	private Game game;
@@ -20,17 +21,17 @@ public class Lane {
 			this.game = game;
 			this.ord = ord;
 			this.speed = game.randomGen.nextInt(game.minSpeedInTimerLoops + 3);//a modifier pour ajouter tictac
-			this.cars = new ArrayList<>(); //ajouter pouvooir add voitures au fur et a mesure
+			this.cars = new ArrayList<>();
 			this.leftToRight = game.randomGen.nextBoolean();
 			this.density = density;
-			//this.timer = speed;
+
 
 			for (int i = 0; i <  3*game.width; ++i) { //**************************************************************************************************
 				this.moveCars(true);
 				this.mayAddCar();
 			}
 
-			// à modifier pour ajouter un timer
+
 		}
 		// TODO : Constructeur(s
 
@@ -73,6 +74,8 @@ public class Lane {
 			  this.timer = 0;
 			  this.moveCars(true);
 			  this.mayAddCar();
+
+
 
 		   } else {
 			  this.moveCars(false);
@@ -149,9 +152,18 @@ public class Lane {
 
 
 	}
+
+
 	public String toString() {
 		return "Lane [ord=" + this.ord + ", cars=" + this.cars + "]";
 	}
+
+	public int newOrd (){
+		return this.ord = this.ord-1;
+	}
+
+
+
 }
 
 

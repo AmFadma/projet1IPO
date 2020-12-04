@@ -53,9 +53,9 @@ public class Car {
 		this.addToGraphics();
 	}
 
-	public Case getPosition () {
+	/**public Case getPosition () {
 		return leftPosition;
-	}
+	}**/
 
 	public boolean appearsInBounds (){
 	    return (this.leftPosition.absc < game.width || this.leftPosition.absc + this.length > 0);
