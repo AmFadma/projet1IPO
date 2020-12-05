@@ -1,14 +1,19 @@
 package gameCommons;
 
+
 import java.util.Timer;
 import java.awt.Color;
 import java.util.Random;
+
+
 import environment.EnvInf;
 import environment.FrogInf;
 import environment.Lane;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 import util.Direction;
+
+
 
 public class Game {
 
@@ -21,7 +26,8 @@ public class Game {
 	public final double defaultDensity;
 	public int score = 0;
 	public int maxScore = 0;
-	public Timer timer = new Timer();
+	//public Timer timer = new Timer();
+	public int temps;
 
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
@@ -42,6 +48,7 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		this.temps = 0;
 
 
 	}
@@ -82,7 +89,7 @@ public class Game {
 			if (!(this.environment.isSafe(this.frog.getPosition()))) {
 
 
-				this.graphic.endGameScreen(" score of "+ this.maxScore +" in "+this.timer + " seconds");
+				this.graphic.endGameScreen(" score of "+ this.maxScore +" in "+temps + " seconds");
 
 			}
 			return true;
@@ -105,8 +112,9 @@ public class Game {
 			this.graphic.endGameScreen("you win");
 			return true;
 
+		}else {
+			return false;
 		}
-		return false;
 	}
 
 	public void afficheWay(){
@@ -119,20 +127,24 @@ public class Game {
 	 */
 
 	public void update() {
+
+
 		graphic.clear();
 		environment.update();
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
 		testLose();
 		testWin();
+
+
 	}
 
 	public void addLane() {
 		this.environment.addLane();
 	}
 
-	public Timer setTimer () {
+	/*public Timer setTimer () {
 		return this.timer ;
-	}
+	}*/
 
 
 

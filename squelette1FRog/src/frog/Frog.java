@@ -29,28 +29,44 @@ public class Frog implements IFrog {
 
 	@Override
 	public void move(Direction key) {
-		if(key == Direction.up){
-			if( getPosition().ord != game.height-1) {
+
+		if(key == Direction.up && getPosition().ord != game.height-1){
+
 				this.pos = new Case(getPosition().absc, getPosition().ord + 1);
-			}
+				++this.game.score;
+				if (this.game.score > this.game.maxScore) {
+					this.game.maxScore = this.game.score;
+					System.out.println( "ok1");
+					this.game.addLane ();
+					System.out.println( "ok2");
+				}
+
 
 		}
 		if(key == Direction.down){
-			if( getPosition().ord != 0) {
+			if( getPosition().ord > 0) {
 				this.pos = new Case(getPosition().absc, getPosition().ord + -1);
+				--this.game.score;
 			}
 
 		}
-		if(key == Direction.right){
-			if(getPosition().absc != game.width-1 ) {
+		if(key == Direction.right && getPosition().absc < game.width-1){
+
 				this.pos = new Case(getPosition().absc + 1, getPosition().ord);
-			}
+
+
 		}
-		if(key == Direction.left){
-			if(getPosition().absc != 0 ) {
+		if(key == Direction.left && getPosition().absc > 0 ){
+
 				this.pos = new Case(getPosition().absc - 1, getPosition().ord);
-			}
+
+
 		}
+		System.out.println(this.pos.absc + " " + this.pos.ord + " score : " + this.game.score);
+		game.testWin();
+		game.testLose();
+
+
 
 	}
 

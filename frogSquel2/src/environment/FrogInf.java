@@ -48,7 +48,12 @@ public class FrogInf extends Frog implements IFrog {
         return score;
     }**/
 
+    @Override
     public void move(Direction key) {
+        super.move(key);
+    }
+
+    /**public void move(Direction key) {
         this.dir = key;
         if (key == Direction.up) {
             this.pos= new Case(this.pos.absc, this.pos.ord + 1);
@@ -75,7 +80,8 @@ public class FrogInf extends Frog implements IFrog {
         }
 
         System.out.println(this.pos.absc + " " + this.pos.ord + " score : " + this.game.score);
-    }
+    }**/
+
 
     /*public Case getPosition (Case c){
         return super.getPosition();
