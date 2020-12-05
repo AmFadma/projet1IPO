@@ -7,6 +7,7 @@ import util.Case;
 import util.Direction;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class EnvInf extends Environment implements IEnvironment {
     public EnvInf(Game game) {
@@ -25,7 +26,7 @@ public class EnvInf extends Environment implements IEnvironment {
    // public void addLane(int i) {
        // this.way.add(new Lane(this.game, i, 0.2));
     //}
-  public void moveLanes (Direction key){
+  /*public void moveLanes (Direction key){
 
         Lane lane ;
         if (key == Direction.up){
@@ -41,18 +42,20 @@ public class EnvInf extends Environment implements IEnvironment {
         update();
 
 
-    }
+    }*/
 
 
 
     @Override
     public boolean isSafe(Case c) {
         return super.isSafe(c);
+
+
     }
 
     @Override
     public boolean isWinningPosition(Case c) {
-        return super.isWinningPosition(c);
+        return false;
     }
 
 
@@ -80,6 +83,7 @@ public class EnvInf extends Environment implements IEnvironment {
 
     public void addLane() {
         this.addLane(this.way.size());
+
     }
 
 

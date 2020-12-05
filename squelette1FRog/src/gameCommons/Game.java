@@ -1,14 +1,18 @@
 package gameCommons;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.awt.Color;
 import java.util.Random;
+import java.util.TimerTask;
 
 
 import environment.EnvInf;
 import environment.FrogInf;
 import environment.Lane;
+import frog.Frog;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 import util.Direction;
@@ -26,8 +30,8 @@ public class Game {
 	public final double defaultDensity;
 	public int score = 0;
 	public int maxScore = 0;
-	//public Timer timer = new Timer();
-	public int temps;
+	public Timer timer = new Timer();
+	public int secondPassed = 0;
 
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
@@ -48,7 +52,11 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
-		this.temps = 0;
+
+		graphic.setGame(this);
+
+		this.play();
+
 
 
 	}
@@ -89,7 +97,7 @@ public class Game {
 			if (!(this.environment.isSafe(this.frog.getPosition()))) {
 
 
-				this.graphic.endGameScreen(" score of "+ this.maxScore +" in "+temps + " seconds");
+				this.graphic.endGameScreen(" score of "+ this.maxScore +" in ");
 
 			}
 			return true;
@@ -107,7 +115,7 @@ public class Game {
 	 * @return true si la partie est gagn�e
 	 */
 	public boolean testWin() {
-// TODO
+
 		if (this.environment.isWinningPosition(this.frog.getPosition())) {
 			this.graphic.endGameScreen("you win");
 			return true;
@@ -120,6 +128,40 @@ public class Game {
 	public void afficheWay(){
 		
 	}
+	public void play(){
+		//Cr�ation et liason de la grenouille
+		IFrog frog = new Frog(this); //suppose qu'il y a un param de type game
+		//game.setFrog(frog);
+		//graphic.setFrog(frog);
+		//IFrog frog = new FrogInf(game); //suppose qu'il y a un param de type game
+		this.setFrogInf(frog);
+		graphic.setFrog(frog);
+		score = 0;
+	}
+
+
+
+	TimerTask task = new TimerTask() {
+
+
+		public void run() {
+			secondPassed ++;
+			System.out.println( "Second passed: " + secondPassed);
+		}
+	};
+
+	public void starteu(){
+		this.timer.scheduleAtFixedRate(task, 0, 1000);
+
+	}
+
+
+
+
+
+
+
+
 
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
@@ -129,11 +171,14 @@ public class Game {
 	public void update() {
 
 
+
 		graphic.clear();
 		environment.update();
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
 		testLose();
 		testWin();
+
+
 
 
 	}

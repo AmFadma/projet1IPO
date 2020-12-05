@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
-
+import gameCommons.Time;
 import environment.EnvInf;
 import environment.Environment;
 import environment.FrogInf;
@@ -19,7 +19,7 @@ public class Main {
 
 		//Caract�ristiques du jeu
 		int width = 26;
-		int height = 20;
+		int height = 30;
 		int tempo = 100;
 		int minSpeedInTimerLoops = 3;
 		double defaultDensity = 0.2;
@@ -40,6 +40,10 @@ public class Main {
 		//IEnvironment env = new Environment(game);
 		IEnvironment env = new EnvInf(game);
 		game.setEnvironment(env);
+		for(int i = 0; i < 40; ++i) {//****************************************************
+			game.update();
+		}
+
 				
 		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
 		Timer timer = new Timer(tempo, new ActionListener() {
@@ -51,5 +55,8 @@ public class Main {
 		});
 		timer.setInitialDelay(0);
 		timer.start();
+
+
+
 	}
 }

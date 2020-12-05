@@ -2,19 +2,25 @@ package graphicalElements;
 
 import javax.swing.*;
 
+import gameCommons.Game;
 import gameCommons.IFrog;
 import util.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListener {
 	private ArrayList<Element> elementsToDisplay;
 	private int pixelByCase = 16;
+	private boolean isRunning = false;
+
 	private int width;
 	private int height;
+
+	private Game game;
 	private IFrog frog;
 	private JFrame frame;
 
@@ -29,9 +35,10 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 		JFrame frame = new JFrame("Frogger");
 		this.frame = frame;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add(this);
-		frame.pack();
-		frame.setVisible(true);
+		//frame.getContentPane().add(this);
+		//frame.pack();
+		//frame.setVisible(true);
+		startGameScreen();
 		frame.addKeyListener(this);
 	}
 
@@ -62,6 +69,17 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 			break;
 		case KeyEvent.VK_RIGHT:
 			frog.move(Direction.right);
+			break;
+		case KeyEvent.VK_ESCAPE:
+				//frame.dispose();
+			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+			break;
+		case KeyEvent.VK_SPACE:
+		case KeyEvent.VK_ENTER:
+			if (!isRunning) {
+				this.startGameScreen();
+				game.play();
+			}
 		}
 	}
 
@@ -72,20 +90,33 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	public void add(Element e) {
 		this.elementsToDisplay.add(e);
 	}
+	public void setGame(Game game) {
+		this.game = game;
+	};
 
 	public void setFrog(IFrog frog) {
 		this.frog = frog;
 	}
 
+	private void startGameScreen() {
+		frame.getContentPane().add(this);
+		frame.pack();
+		frame.setVisible(true);
+		isRunning = true;
+	}
+
 	public void endGameScreen(String s) {
+		isRunning = false;
 		frame.remove(this);
 		JLabel label = new JLabel(s);
-		label.setFont(new Font("Verdana", 1, 20));
+		label.setFont(new Font("SimSun", 0, 23));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setSize(this.getSize());
+		frame.getContentPane().removeAll();
 		frame.getContentPane().add(label);
 		frame.repaint();
-
 	}
 
 }
+
+

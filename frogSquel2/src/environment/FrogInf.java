@@ -79,6 +79,10 @@ public class FrogInf extends Frog implements IFrog {
         if (key == Direction.left && this.pos.absc > 0) {
             this.pos = new Case(this.pos.absc - 1, this.pos.ord);
         }
+       this.game.getGraphic().add(new Element(this.pos.absc, 1, Color.GREEN));
+       this.game.testWin();
+       this.game.testLose();
+
 
         System.out.println(this.pos.absc + " " + this.pos.ord + " score : " + this.game.score);
     }

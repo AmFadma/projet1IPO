@@ -26,7 +26,7 @@ public class Lane {
 			this.density = density;
 
 
-			for (int i = 0; i <  3*game.width; ++i) { //**************************************************************************************************
+			for (int i = 0; i <  40; ++i) { //**************************************************************************************************
 				this.moveCars(true);
 				this.mayAddCar();
 			}
@@ -70,11 +70,11 @@ public class Lane {
 
 	public void update() {  //***********************************************************************************************
 
-		  if (this.timer > this.speed) {
-			  this.timer = 0;
+		 if (this.timer > this.speed) {
+
 			  this.moveCars(true);
 			  this.mayAddCar();
-
+			  this.timer = 0;
 
 
 		   } else {
@@ -82,6 +82,7 @@ public class Lane {
 		   }
 
 		this.timer++;
+
 
 
 	}
@@ -105,7 +106,7 @@ public class Lane {
 	public boolean isSafe(Case c){
 
 		for (Car car : this.cars) {
-			if (car.coversCase(c)) {//************************************************
+			if (car.coversCase(c)){
 				return false;
 			}
 		}
@@ -158,9 +159,9 @@ public class Lane {
 		return "Lane [ord=" + this.ord + ", cars=" + this.cars + "]";
 	}
 
-	public int newOrd (){
+	/*public int newOrd (){
 		return this.ord = this.ord-1;
-	}
+	}*/
 
 
 
