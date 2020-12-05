@@ -13,8 +13,9 @@ public class EnvInf extends Environment implements IEnvironment {
         super(game);
         this.way= new ArrayList();
         this.way.add(new Lane(game, 0, 0.0D));
+        this.way.add(new Lane(game, 1, 0.0D));
 
-        for(int i = 1; i < game.height; ++i) {
+        for(int i = 2; i < game.height; ++i) {
             this.addLane(i);
         }
     }
