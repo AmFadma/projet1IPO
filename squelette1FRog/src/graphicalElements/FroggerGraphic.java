@@ -90,6 +90,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 	public void add(Element e) {
 		this.elementsToDisplay.add(e);
 	}
+
 	public void setGame(Game game) {
 		this.game = game;
 	};

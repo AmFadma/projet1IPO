@@ -39,6 +39,7 @@ public class Environment implements IEnvironment {
     @Override
     public void addLane() {
 
+
     }
 
     @Override
@@ -52,24 +53,9 @@ public class Environment implements IEnvironment {
 
     @Override
     public void update() {
-        /**update();
-        addToGraphics();
-       mayAddCar();
-
-        for (int i=0; i<game.minSpeedInTimerLoops; i++){
-           mayAddCar();
-            addToGraphics();
-        }**/
-       for(int i = 0; i < way.size(); i++) {
-           way.get(i).update();
-
-
-
-
+        for (Lane lane : way){
+            lane.update();
        }
-
-
-
     }
 
 

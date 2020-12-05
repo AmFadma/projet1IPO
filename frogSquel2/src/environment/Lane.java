@@ -14,13 +14,13 @@ public class Lane {
 	private ArrayList<Car> cars;
 	private boolean leftToRight;
 	private double density;
-	private int timer; //**************************************************************************************************************
+	private int timer;
 
 
 	public Lane(Game game, int ord, double density) {
 			this.game = game;
 			this.ord = ord;
-			this.speed = game.randomGen.nextInt(game.minSpeedInTimerLoops + 3);//a modifier pour ajouter tictac
+			this.speed = game.randomGen.nextInt(game.minSpeedInTimerLoops + 3);
 			this.cars = new ArrayList<>();
 			this.leftToRight = game.randomGen.nextBoolean();
 			this.density = density;
