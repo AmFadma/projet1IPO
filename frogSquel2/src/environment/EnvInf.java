@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class EnvInf extends Environment implements IEnvironment {
+
     public EnvInf(Game game) {
         super(game);
         this.way= new ArrayList();
@@ -23,26 +24,19 @@ public class EnvInf extends Environment implements IEnvironment {
     public void addLane (int i){
        this.way.add(new Lane(game,i,0.2));
     }
-   // public void addLane(int i) {
-       // this.way.add(new Lane(this.game, i, 0.2));
-    //}
-  /*public void moveLanes (Direction key){
 
-        Lane lane ;
-        if (key == Direction.up){
+    /**public void updateLanes(Case c){
+        for (Lane lane : way) {
+            if (way.get(c.ord) == way.get(2)){
+                lane = way.get(c.ord - 1);
 
-            for( int i = 2; i<game.height;i++){
-                lane = this.way.get(i);
-                lane.newOrd();
+
             }
-
-            addLane(game.height);
         }
 
-        update();
+    }**/
 
 
-    }*/
 
 
 
@@ -50,6 +44,10 @@ public class EnvInf extends Environment implements IEnvironment {
     public boolean isSafe(Case c) {
         return super.isSafe(c);
 
+
+    }
+    public boolean appearsInBounds (Case c){
+        return (c.ord< game.height || c.ord> 0);
 
     }
 
@@ -78,8 +76,7 @@ public class EnvInf extends Environment implements IEnvironment {
 
     }
 
-    private void moveLanes() {
-    }
+
 
     public void addLane() {
         this.addLane(this.way.size());

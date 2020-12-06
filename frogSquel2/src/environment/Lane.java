@@ -69,7 +69,7 @@ public class Lane {
 
 
 	public void update() {  //***********************************************************************************************
-
+		this.timer++;
 		 if (this.timer > this.speed) {
 
 			  this.moveCars(true);
@@ -81,7 +81,7 @@ public class Lane {
 			  this.moveCars(false);
 		   }
 
-		this.timer++;
+
 
 
 

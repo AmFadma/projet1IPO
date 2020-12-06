@@ -4,11 +4,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Timer;
 import java.util.TimerTask;
 
 public class Time {
-    public Game game;
+    /**public Game game;
     public int secondPassed;
     public Timer myTimer;
 
@@ -32,7 +31,41 @@ public class Time {
 
         public void update (){
           start();
-        }
-    }
+        }**/
+    private static int heure=0,minute=0,seconde=0;
+
+
+
+        /* Le timer */
+    /**int delais=1000;
+        ActionListener tache_timer;
+
+        /* Action réalisé par le timer */
+        /**tache_timer= new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e1)
+            {
+                seconde++;
+                if(seconde==60)
+                {
+                    seconde=0;
+                    minute++;
+                }
+                if(minute==60)
+                {
+                    minute=0;
+                    heure++;
+                }
+                System.out.println(heure+":"+minute+":"+seconde);
+            }
+        };
+
+        /* instanciation du timer */
+       /** final javax.swing.Timer timer1= new Timer(delais,tache_timer);
+        timer1.start();**/
+
+}
+
+
 
 

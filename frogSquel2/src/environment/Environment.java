@@ -31,7 +31,7 @@ public class Environment implements IEnvironment {
 
     }  //TODO
     public boolean isSafe(Case c){
-        return this.way.get(c.ord).isSafe(c);
+        return (this.way.get(c.ord)).isSafe(c);
 
     }
 
