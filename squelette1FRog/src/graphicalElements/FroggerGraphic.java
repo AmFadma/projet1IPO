@@ -79,6 +79,7 @@ public class FroggerGraphic extends JPanel implements IFroggerGraphics, KeyListe
 			if (!isRunning) {
 				this.startGameScreen();
 				game.play();
+				game.score = 0;
 			}
 		}
 	}
