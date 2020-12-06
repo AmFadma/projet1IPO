@@ -25,16 +25,21 @@ public class EnvInf extends Environment implements IEnvironment {
        this.way.add(new Lane(game,i,0.2));
     }
 
-    /**public void updateLanes(Case c){
+   public void updateLanes(Case c){
         for (Lane lane : way) {
             if (way.get(c.ord) == way.get(2)){
-                lane = way.get(c.ord - 1);
+                lane = way.get(c.ord - 2);
+                way.remove(c.ord - 2);
+
+
+
+
 
 
             }
         }
 
-    }**/
+    }
 
 
 

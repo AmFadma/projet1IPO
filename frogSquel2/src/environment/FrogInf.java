@@ -65,9 +65,9 @@ public class FrogInf extends Frog implements IFrog {
             ++this.game.score;
             if (this.game.score > this.game.maxScore) {
                 this.game.maxScore = this.game.score;
-                System.out.println( "ok1");
+
                 this.game.addLane ();
-                System.out.println( "ok2");
+                game.update();
             }
         }
 
